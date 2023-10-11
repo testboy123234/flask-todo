@@ -1,9 +1,38 @@
 {% extends 'base.html' %}
 
 {% block head %}
-
+<title>Todo App</title>
 {% endblock %}
 
 {% block body %}
-<h1 class="">sfgf</h1>
+<div class="content">
+    <h1>Todo Lists</h1>
+
+    <table>
+        <tr>
+            <th>task</th>
+            <th>added</th>
+            <th>actions</th>
+        </tr>
+       
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.content }}</td>
+                <td>{{ task.date_created.date() }}</td>
+                <td>
+                    <a href="/delete/{{task.id}}">Delete</a>
+                    <p> </p>
+                    <a href="/update/{{task.id}}">Update</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div class="form">
+        <form action="/" method="POST">
+            <input type="text" name="content" id="content">
+            <input type="submit" value="Add Task">
+        </form>
+    </div>
+</div>
 {% endblock %}
